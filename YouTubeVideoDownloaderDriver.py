@@ -84,7 +84,7 @@ def createGUI():
     root.resizable(width=0, height=0)
 
     # Create a frame
-    mainframe = ttk.Frame(master = root, padding = "3 3 12 12")
+    mainframe = ttk.Frame(master = root, padding = "12 12 12 12")
 
     # Create a grid to align the components
     mainframe.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
