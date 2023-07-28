@@ -1,0 +1,16 @@
+INFO:root:Attempting to access URL.
+INFO:root:URL access successful. Video has been found.
+INFO:root:The video's title is Naacho Naacho
+INFO:root:Accessing highest quality audio stream.
+INFO:root:Stream data is <Stream: itag="140" mime_type="audio/mp4" abr="128kbps" acodec="mp4a.40.2" progressive="False" type="audio">
+INFO:root:Starting download of stream at https://www.youtube.com/watch?v=sAzlWScHTc4
+INFO:root:Finished download of stream at https://www.youtube.com/watch?v=sAzlWScHTc4
+INFO:root:Saving file as .mp3 format.
+INFO:root:Attempting to access URL.
+INFO:root:URL access successful. Video has been found.
+INFO:root:The video's title is Naacho Naacho
+INFO:root:Accessing highest quality audio stream.
+INFO:root:Stream data is <Stream: itag="140" mime_type="audio/mp4" abr="128kbps" acodec="mp4a.40.2" progressive="False" type="audio">
+INFO:root:Starting download of stream at https://www.youtube.com/watch?v=sAzlWScHTc4
+INFO:root:Finished download of stream at https://www.youtube.com/watch?v=sAzlWScHTc4
+INFO:root:Saving file as .mp3 format.
