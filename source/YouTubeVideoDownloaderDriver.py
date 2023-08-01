@@ -74,6 +74,9 @@ GUI_WINDOW_TITLE = "YouTube Video Downloader"
     # False = failed execution
 def createGUI():
     
+    # Indicate that we are creating the GUI
+    logging.info(msg = "Creating GUI.")
+    
     # Create an instance of the Tk runtime
     root = tk.Tk()
 
@@ -107,6 +110,8 @@ def createGUI():
 
     # Initiate the GUI thread
     root.mainloop()
+
+    logging.info(msg = "GUI creation finished.")
     
     return True
 
@@ -125,22 +130,22 @@ def downloadYouTubeVideo(url = None, fileType = None, ret = None):
 
     # Instantiate a YouTube object with the URL
     try:
-        logging.info("Attempting to access URL.")
+        logging.info(msg = "Attempting to access URL.")
         yt = YouTube(url = url.get(), use_oauth = True)
 
     # If we are unable to access the URL, set yt to None
     except Exception as e:
-        logging.warning("Unable to access YouTube URL of " + url.get())
+        logging.warning(msg = "Unable to access YouTube URL of " + url.get())
         logging.exception(msg = e)
         yt = None
 
     # Print success message and title if the video was successful; otherwise, dispaly an error box and return
     finally:
         if yt is not None:
-            logging.info("URL access successful. Video has been found.")
-            logging.info("The video's title is " + yt.title)
+            logging.info(msg = "URL access successful. Video has been found.")
+            logging.info(msg = "The video's title is " + yt.title)
         else:
-            logging.error("The YouTube link could not be accessed.")
+            logging.error(msg = "The YouTube link could not be accessed.")
             messagebox.showerror(title = GUI_ERROR_URL_TITLE, message = GUI_ERROR_URL_TEXT_EMPTY if url.get() == "" else GUI_ERROR_URL_TEXT_INVALID)
             ret.set(False)
             return
@@ -148,16 +153,16 @@ def downloadYouTubeVideo(url = None, fileType = None, ret = None):
     # Filter the streams for audio files; use a try-except block for age restriction
     try:
         if (fileType == "mp3"):
-            logging.info("Accessing highest quality audio stream.")
+            logging.info(msg = "Accessing highest quality audio stream.")
             stream = yt.streams.get_audio_only()
         # Filter the streams for video files
         else:
-            logging.info("Accessing highest quality video stream.")
+            logging.info(msg = "Accessing highest quality video stream.")
             stream = yt.streams.get_highest_resolution()
     # Fail on age restriction
     # TODO: Figure out a way around the age restriction
     except:
-        logging.error("The YouTube video is age restricted and cannot be downloaded.")
+        logging.error(msg = "The YouTube video is age restricted and cannot be downloaded.")
         messagebox.showerror(title = GUI_ERROR_AGE_TITLE, message = GUI_ERROR_AGE_TEXT)
         ret.set(False)
         return
@@ -166,18 +171,19 @@ def downloadYouTubeVideo(url = None, fileType = None, ret = None):
     logging.info("Stream data is " + str(stream))
 
     # Download the stream
-    logging.info("Starting download of stream at " + url.get())
+    logging.info(msg = "Starting download of stream at " + url.get())
     outFile = stream.download(output_path = os.path.join(Path.home(), 'Downloads'))
-    logging.info("Finished download of stream at " + url.get())
+    logging.info(msg = "Finished download of stream at " + url.get())
 
     # Convert to mp3 if applicable
     if (fileType == "mp3"):
-        logging.info("Saving file as .mp3 format.")
+        logging.info(msg = "Saving file as .mp3 format.")
         base, ext = os.path.splitext(outFile)
         newFile = base + ".mp3"
 
         # If an mp3 file like it exists, overwrite
         if (os.path.isfile(newFile)):
+            logging.warning(msg = "Overwriting file with identical name.")
             os.remove(newFile)
 
         os.rename(outFile, newFile)
