@@ -211,7 +211,7 @@ def main():
     createGUI()
 
 # Set the logger properties
-logging.basicConfig(filename='../logs/YouTubeVideoDownloader.log', filemode = 'w', encoding='utf-8', level = logging.INFO)
+logging.basicConfig(filename='./logs/YouTubeVideoDownloader.log', filemode = 'w', encoding='utf-8', level = logging.INFO)
 
 # Run the program
 main()
