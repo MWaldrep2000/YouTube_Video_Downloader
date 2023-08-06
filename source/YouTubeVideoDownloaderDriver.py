@@ -59,6 +59,10 @@ GUI_LABEL_MP4 = "mp4"
 # Specify GUI window title
 GUI_WINDOW_TITLE = "YouTube Video Downloader"
 
+# Specify logging path and name
+LOGGING_PATH = "./logs/"
+LOGGING_FILE_NAME = "YouTubeVideoDownloader.log"
+
     ####################
     # Module Functions #
     ####################
@@ -210,8 +214,12 @@ def main():
     # Create the GUI with all of its logic
     createGUI()
 
+# Check if the log directory exists
+if not os.path.exists(path = LOGGING_PATH):
+    os.mkdir(path = LOGGING_PATH)
+
 # Set the logger properties
-logging.basicConfig(filename='./logs/YouTubeVideoDownloader.log', filemode = 'w', encoding='utf-8', level = logging.INFO)
+logging.basicConfig(filename = os.path.join(LOGGING_PATH, LOGGING_FILE_NAME), filemode = 'w', encoding='utf-8', level = logging.INFO)
 
 # Run the program
 main()
