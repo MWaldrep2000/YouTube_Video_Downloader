@@ -1,4 +1,5 @@
 *.log
 *.spec
 
+dist/
 source/build/
